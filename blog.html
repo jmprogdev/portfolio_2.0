@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | JM Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/logo.png">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png">
+    
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <script>
+        tailwind.config = {
+            theme: { 
+                extend: { 
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] }, 
+                    colors: { primary: '#0f172a', secondary: '#00b4d8', accent: '#0077b6' },
+                    animation: {
+                        'fade-up': 'fadeUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                } 
+            }
+        }
+    </script>
+    <style>
+        /* Smooth Page Transition Entrance */
+        body { opacity: 0; animation: pageFadeIn 0.4s ease-out forwards; }
+        @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        /* Hide scrollbars */
+        ::-webkit-scrollbar { display: none; }
+        html { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* --- PREVENT COPY, HIGHLIGHT & POINTER INTERACTIONS --- */
+        body {
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE10+/Edge */
+            user-select: none; /* Standard */
+        }
+
+        /* Prevent image dragging natively */
+        img {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            -user-drag: none;
+        }
+
+        /* Force normal cursor on all clickable elements to hide links */
+        a, button, [data-href] {
+            cursor: default !important;
+        }
+
+        /* --- INTERACTIVE ANIMATIONS --- */
+        .stagger-1 { animation-delay: 0.1s; opacity: 0; }
+        .stagger-2 { animation-delay: 0.3s; opacity: 0; }
+        .stagger-3 { animation-delay: 0.5s; opacity: 0; }
+    </style>
+</head>
+<body class="bg-[#f8fafc] text-gray-800 font-sans antialiased flex flex-col min-h-screen selection:bg-secondary selection:text-white select-none" oncontextmenu="return false;">
+
+    <nav class="fixed w-full bg-white/80 backdrop-blur-md shadow-sm z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                
+                <div class="flex-shrink-0 flex items-center">
+                    <a data-href="index.html" class="block hover:opacity-80 transition-opacity duration-300">
+                        <img src="assets/logo.png" alt="JMR Logo" class="h-12 w-auto object-contain rounded-md pointer-events-none" draggable="false">
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex space-x-8 items-center text-sm lg:text-base">
+                    <a data-href="index.html" class="text-gray-500 hover:text-primary font-medium transition-colors relative group">
+                        Home
+                        <span class="absolute -bottom-1.5 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full rounded-full"></span>
+                    </a>
+                    
+                    <a data-href="about.html" class="text-gray-500 hover:text-primary font-medium transition-colors relative group">
+                        About
+                        <span class="absolute -bottom-1.5 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full rounded-full"></span>
+                    </a>
+
+                    <a data-href="projects.html" class="text-gray-500 hover:text-primary font-medium transition-colors relative group">
+                        Projects
+                        <span class="absolute -bottom-1.5 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full rounded-full"></span>
+                    </a>
+
+                    <a data-href="resume.html" class="text-gray-500 hover:text-primary font-medium transition-colors relative group">
+                        Resume
+                        <span class="absolute -bottom-1.5 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full rounded-full"></span>
+                    </a>
+
+                    <a data-href="blog.html" class="text-primary font-bold relative group">
+                        Blog
+                        <span class="absolute -bottom-1.5 left-0 w-full h-0.5 bg-secondary rounded-full"></span>
+                    </a>
+
+                    <a data-href="contact.html" class="bg-primary text-white px-6 py-2.5 rounded-full hover:bg-secondary hover:shadow-lg transition-all duration-300 font-medium">Contact Me</a>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                        <svg class="h-6 w-6 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100 shadow-2xl absolute w-full z-40 top-20">
+            <div class="px-4 pt-4 pb-6 space-y-2">
+                <a data-href="index.html" class="block px-4 py-3 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-xl font-medium transition-colors">Home</a>
+                <a data-href="about.html" class="block px-4 py-3 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-xl font-medium transition-colors">About</a>
+                <a data-href="projects.html" class="block px-4 py-3 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-xl font-medium transition-colors">Projects</a>
+                <a data-href="resume.html" class="block px-4 py-3 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-xl font-medium transition-colors">Resume</a>
+                <a data-href="blog.html" class="block px-4 py-3 text-secondary bg-cyan-50/50 rounded-xl font-bold">Blog</a>
+                <a data-href="contact.html" class="block px-4 py-3 text-primary font-bold hover:bg-gray-50 rounded-xl transition-colors mt-4 border border-gray-100 text-center">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-32 pb-20">
+        <section id="blog">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 animate-fade-up">
+                    <h2 class="text-4xl font-extrabold text-primary">Thoughts & Insights</h2>
+                    <div class="w-24 h-1.5 bg-gradient-to-r from-secondary to-accent mx-auto mt-6 rounded-full"></div>
+                    <p class="mt-4 text-gray-600 text-lg pointer-events-none">Writing about PHP dev, UI design, and Vibe Coding.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    
+                    <article class="bg-white rounded-3xl overflow-hidden shadow-lg shadow-gray-200/50 hover:shadow-2xl transition-shadow duration-300 border border-gray-100 flex flex-col group animate-fade-up stagger-1">
+                        <div class="h-48 bg-gradient-to-br from-cyan-100 to-blue-50 relative p-6 flex flex-col justify-end overflow-hidden">
+                            <div class="absolute top-4 right-4 bg-white/80 backdrop-blur text-secondary text-xs font-bold px-3 py-1 rounded-full shadow-sm pointer-events-none">Web Dev</div>
+                            <svg class="w-24 h-24 absolute -bottom-4 -right-4 text-cyan-200 opacity-50 transition-opacity duration-500 group-hover:opacity-70 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-primary mb-3 leading-tight group-hover:text-secondary transition-colors pointer-events-none">Building the ISCC Management System</h3>
+                            <p class="text-gray-600 mb-6 text-sm flex-grow pointer-events-none">A deep dive into how I architected a multi-module school system using pure PHP, MySQL, and Tailwind CSS. We discuss security, attendance tracking, and UI.</p>
+                            <div class="flex items-center justify-between text-xs font-semibold text-gray-500">
+                                <span class="pointer-events-none">May 12, 2026</span>
+                                <a data-href="#" class="hidden text-secondary hover:text-accent flex items-center transition-colors">Read Post <svg class="w-4 h-4 ml-1 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="bg-white rounded-3xl overflow-hidden shadow-lg shadow-gray-200/50 hover:shadow-2xl transition-shadow duration-300 border border-gray-100 flex flex-col group animate-fade-up stagger-2">
+                        <div class="h-48 bg-gradient-to-br from-blue-100 to-indigo-50 relative p-6 flex flex-col justify-end overflow-hidden">
+                            <div class="absolute top-4 right-4 bg-white/80 backdrop-blur text-accent text-xs font-bold px-3 py-1 rounded-full shadow-sm pointer-events-none">JavaScript</div>
+                            <svg class="w-24 h-24 absolute -bottom-4 -right-4 text-blue-200 opacity-50 transition-opacity duration-500 group-hover:opacity-70 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724a1 1 0 01-.553-.894V5.263a1 1 0 011.447-.894L9 7l5.447-2.724a1 1 0 011.105 0L21 7v11.276a1 1 0 01-.553.894L15 22l-6-3z"></path></svg>
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-primary mb-3 leading-tight group-hover:text-accent transition-colors pointer-events-none">Adding Interactive Maps to Web Apps</h3>
+                            <p class="text-gray-600 mb-6 text-sm flex-grow pointer-events-none">Looking to visualize logistics or delivery routes? Here's my approach to integrating mapping APIs with standard HTML5 and JS to create interactive dashboards.</p>
+                            <div class="flex items-center justify-between text-xs font-semibold text-gray-500">
+                                <span class="pointer-events-none">April 28, 2026</span>
+                                <a data-href="#" class="hidden text-accent hover:text-secondary flex items-center transition-colors">Read Post <svg class="w-4 h-4 ml-1 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="bg-white rounded-3xl overflow-hidden shadow-lg shadow-gray-200/50 hover:shadow-2xl transition-shadow duration-300 border border-gray-100 flex flex-col group animate-fade-up stagger-3">
+                        <div class="h-48 bg-gradient-to-br from-sky-100 to-cyan-50 relative p-6 flex flex-col justify-end overflow-hidden">
+                            <div class="absolute top-4 right-4 bg-white/80 backdrop-blur text-sky-600 text-xs font-bold px-3 py-1 rounded-full shadow-sm pointer-events-none">Creative</div>
+                            <svg class="w-24 h-24 absolute -bottom-4 -right-4 text-sky-200 opacity-50 transition-opacity duration-500 group-hover:opacity-70 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-primary mb-3 leading-tight group-hover:text-sky-600 transition-colors pointer-events-none">Leveling Up Your Dev Portfolio with Video</h3>
+                            <p class="text-gray-600 mb-6 text-sm flex-grow pointer-events-none">Why rely only on screenshots? In this post, I share how I use CapCut to generate high-definition video walkthroughs of my web applications to impress clients.</p>
+                            <div class="flex items-center justify-between text-xs font-semibold text-gray-500">
+                                <span class="pointer-events-none">March 15, 2026</span>
+                                <a data-href="#" class="hidden text-sky-600 hover:text-primary flex items-center transition-colors">Read Post <svg class="w-4 h-4 ml-1 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white border-t border-gray-100 py-8 text-center mt-auto">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
+            <p class="text-sm text-gray-500 pointer-events-none">&copy; <span id="year"></span> JMR Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+<script>
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F5' || (e.ctrlKey && e.key === 'r') || (e.metaKey && e.key === 'r')) { e.preventDefault(); return false; }
+            if (e.ctrlKey && (e.key === 's' || e.key === 'S' || e.key === 'p' || e.key === 'P' || e.key === 'u' || e.key === 'U')) { e.preventDefault(); return false; }
+            if (e.key === 'F12') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I' || e.key === 'j' || e.key === 'J' || e.key === 'c' || e.key === 'C')) { e.preventDefault(); return false; }
+        });
+
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('year').textContent = new Date().getFullYear();
+        });
+
+        document.querySelectorAll('[data-href]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = this.getAttribute('data-href');
+                if (target) {
+                    e.preventDefault();
+                    sessionStorage.setItem('jmr_internal_nav', 'true'); 
+                    document.body.style.transition = 'opacity 0.3s ease';
+                    document.body.style.opacity = '0';
+                    setTimeout(() => { window.location.href = target; }, 300);
+                }
+            });
+        });
+
+        // TRUE GLOBAL SYNCHRONIZED COUNTER (Background)
+        document.addEventListener('DOMContentLoaded', () => {
+            const namespace = 'jmr_portfolio_global_sync';
+            const key = 'total_visits';
+            
+            const upUrl = `https://abacus.jasoncameron.dev/hit/${namespace}/${key}`;
+            const readUrl = `https://abacus.jasoncameron.dev/get/${namespace}/${key}`;
+
+            const navEntries = performance.getEntriesByType("navigation");
+            const navType = navEntries.length > 0 ? navEntries[0].type : '';
+            const isInternalNav = sessionStorage.getItem('jmr_internal_nav') === 'true';
+
+            sessionStorage.removeItem('jmr_internal_nav');
+
+            let shouldCountVisit = false;
+            if (navType === 'reload') shouldCountVisit = true;
+            else if (navType === 'navigate' && !isInternalNav) shouldCountVisit = true;
+
+            async function processVisitorCount() {
+                try {
+                    let endpoint = shouldCountVisit ? upUrl : readUrl;
+                    let response = await fetch(endpoint);
+                    
+                    if (!response.ok) {
+                        const fallbackUp = `https://api.counterapi.dev/v1/${namespace}/${key}/up`;
+                        const fallbackRead = `https://api.counterapi.dev/v1/${namespace}/${key}`;
+                        response = await fetch(shouldCountVisit ? fallbackUp : fallbackRead);
+                        if (!response.ok) throw new Error('API Blocked');
+                    }
+                    
+                    const data = await response.json();
+                    const globalCount = data.value !== undefined ? data.value : data.count;
+                    
+                    if (globalCount !== undefined) {
+                        localStorage.setItem('jmr_true_global_count', globalCount);
+                    } else {
+                        throw new Error('No count returned');
+                    }
+                } catch (error) {
+                    let fallbackCount = parseInt(localStorage.getItem('jmr_true_global_count')) || 1;
+                    if (shouldCountVisit) fallbackCount += 1;
+                    localStorage.setItem('jmr_true_global_count', fallbackCount);
+                }
+            }
+            processVisitorCount();
+        });
+    </script>
+</body>
+</html>
